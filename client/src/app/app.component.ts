@@ -10,7 +10,7 @@ import { AccountService } from './_services/account.service';
 })
 export class AppComponent implements OnInit {
   title = 'client';
-  showRegister: boolean = true;
+  //showRegister: boolean = true;
 
   constructor(
 
@@ -19,13 +19,13 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.accountservice.currentUser$.subscribe(res => {
-      if (res) {
-        this.showRegister = false;
-      } else {
-        this.showRegister = true;
-      }
-    })
+    // this.accountservice.currentUser$.subscribe(res => {
+    //   if (res) {
+    //     this.showRegister = false;
+    //   } else {
+    //     this.showRegister = true;
+    //   }
+    // })
 
     this.setCurrentUser();
 
