@@ -1,17 +1,42 @@
 
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
   <h2 class="text-center text-primary">Sign up</h2>
   <hr>
-  <div class="mb-3 text-center">
-    <input type="text" name="username" [(ngModel)]="model.username" placeholder="Username">
+
+  <div class="mb-3">
+    <label style="margin-right: 10px;">I am a: </label>
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" value="male" formControlName="gender">Male
+    </label>
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input ms-3" value="female" formControlName="gender">Female
+    </label>
   </div>
 
-  <div class="mb-3 text-center">
-    <input type="password" name="password" [(ngModel)]="model.password" placeholder="Password" >
-  </div>
+
+  <app-test-input [formControl]="$any(registerForm.controls['username'])" 
+  [label]="'username'"></app-test-input>
+  <app-test-input [formControl]="$any(registerForm.controls['knownAs'])" 
+  [label]="'Known As'"></app-test-input>
+  <app-datepicker [formControl]="$any(registerForm.controls['dateOfBirth'])" 
+  [label]="'Date Of Birth'" [maxDate]="maxDate"></app-datepicker>
+  <app-test-input [formControl]="$any(registerForm.controls['city'])" 
+  [label]="'City'"></app-test-input>
+  <app-test-input [formControl]="$any(registerForm.controls['country'])" 
+  [label]="'Country'"></app-test-input>
+
+
+
+
+  <app-test-input [formControl]="$any(registerForm.controls['password'])" 
+  [label]="'Password'" [type]="'Password'"></app-test-input>
+  <app-test-input [formControl]="$any(registerForm.controls['confirmPassword'])" 
+  [label]="'Confirm password'" [type]="'Password'"></app-test-input>
+
+
 
   <div class="text-center">
-    <button class="btn btn-success me-2" type="submit">Register</button>
+    <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Register</button>
     <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
   </div>
 </form>
